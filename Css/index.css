@@ -1,0 +1,34 @@
+.navbar-brand{
+    margin-left: 14%;
+}
+.form-control{
+    width: 400px !important;
+}
+.dropdown-toggle{
+    color:white !important;
+}
+.drop{
+    margin-left: 10%;
+}
+#circle{
+    color: white;
+}
+#number{
+    color: #007bff;
+}
+#cart{
+    font-size: 40px;
+}
+#over{
+    left:-26px;
+    top:-10px;
+}
+.navbar{
+    margin-bottom: 70px;
+}
+.plus{
+    color: white;
+}
+.minus{
+    color: white;
+}
