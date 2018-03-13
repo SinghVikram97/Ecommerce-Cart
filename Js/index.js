@@ -1,3 +1,4 @@
+let mainObj=[];
 let orders=[
     {
         name:"OnePlus 5T",
@@ -35,55 +36,55 @@ let cartNumber=cartIcon.html();
 cartNumber=parseInt(cartNumber);
 window.onload=function () {
 
-      // Check if any data left on local storage
+    // Check if any data left on local storage
 
-      let addBtn=$(".plus");
-      let minusBtn=$(".minus");
-      addBtn.click(function () {
-          let spanElement=$($(this).prev());
-          let spanNum=spanElement.html();
-          let name=$($(this)).prev().prev().prev().prev();
-          let price=$($(this)).prev().prev().prev();
-          addOrder(parseInt(spanNum),name.html(),price.html());
-      })
-      minusBtn.click(function () {
-          let spanElement=$($(this).next());
-          let spanNum=spanElement.html();
-          let name=$($(this)).prev().prev();
-          let price=$($(this)).prev();
-          removeOrder(parseInt(spanNum),name.html(),price.html());
-      })
+    let addBtn=$(".plus");
+    let minusBtn=$(".minus");
+    addBtn.click(function () {
+        let spanElement=$($(this).prev());
+        let spanNum=spanElement.html();
+        let name=$($(this)).prev().prev().prev().prev();
+        let price=$($(this)).prev().prev().prev();
+        addOrder(parseInt(spanNum),name.html(),price.html());
+    })
+    minusBtn.click(function () {
+        let spanElement=$($(this).next());
+        let spanNum=spanElement.html();
+        let name=$($(this)).prev().prev();
+        let price=$($(this)).prev();
+        removeOrder(parseInt(spanNum),name.html(),price.html());
+    })
 };
 function refreshOrders() {
 
-       // Update orders array from local storage
-       getFromLocal();
+    // Update orders array from local storage
+    getFromLocal();
 
-       // Update total cart value
-       cartIcon.html(cartNumber);
+    // Update total cart value
+    cartIcon.html(cartNumber);
 
-       // Get div row one and div row two
-       let divRowOne=$("#firstRow");
-       let divRowTwo=$("#secondRow");
+    // Get div row one and div row two
+    let divRowOne=$("#firstRow");
+    let divRowTwo=$("#secondRow");
 
-       // Empty them
-       divRowOne.empty();
-       divRowTwo.empty();
+    // Empty them
+    divRowOne.empty();
+    divRowTwo.empty();
 
-       // Now re render according to updated orders array
-       for(i in orders)
-       {
-           if(i>2)
-           {
-               let item=createOrder(+i);
-               divRowTwo.append(item);
-           }
-           else
-           {
-               let item=createOrder(+i);
-               divRowOne.append(item);
-           }
-       }
+    // Now re render according to updated orders array
+    for(i in orders)
+    {
+        if(i>2)
+        {
+            let item=createOrder(+i);
+            divRowTwo.append(item);
+        }
+        else
+        {
+            let item=createOrder(+i);
+            divRowOne.append(item);
+        }
+    }
 }
 function addOrder(num,name,price) {
 
@@ -115,17 +116,18 @@ function removeOrder(num,name,price) {
     refreshOrders();
 }
 function pushToLocal() {
-    localStorage.setItem("orders",JSON.stringify(orders));
-    localStorage.setItem("cartNumber",JSON.stringify(cartNumber));
+    mainObj=[orders,cartNumber];
+    localStorage.setItem("orders",JSON.stringify(mainObj));
 }
 function getFromLocal() {
     let savedOrders=localStorage.getItem("orders");
     if(savedOrders)
     {
-        orders=JSON.parse(savedOrders);
+        savedOrders=JSON.parse(savedOrders);
+        orders=savedOrders[0];
+        cartNumber=savedOrders[1];
     }
-    let num=localStorage.getItem("cartNumber");
-    cartNumber=JSON.parse(num);
+    console.log(savedOrders);
 }
 function createOrder(i) {
 
