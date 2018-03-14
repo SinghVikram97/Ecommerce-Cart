@@ -2,6 +2,7 @@ let mainObj=[];
 let orders=[];
 let cartIcon;
 let cartNumber;
+
 window.onload=function () {
 
     // Check if any data left on local storage
@@ -26,6 +27,7 @@ window.onload=function () {
 };
 function refreshOrders(firstTime=false) {
 
+     // First time load is same as refresh
     // Update orders array from local storage
     if(!firstTime)
     {
@@ -33,42 +35,51 @@ function refreshOrders(firstTime=false) {
     }
     else
     {
-        orders=[{
-            name:"OnePlus 5T",
-            price:32999,
-            quantity:0
-        },
-            {
-                name:"Iphone X",
-                price:70000,
-                quantity:0
-            },
-            {
-                name:"Samsung Galaxy S9",
+         // If anything stored in local storage
+        let savedOrders=localStorage.getItem("mainObj");
+        if(savedOrders)
+        {
+            getFromLocal();
+        }
+        else
+        {
+            orders=[{
+                name:"OnePlus 5T",
                 price:32999,
                 quantity:0
             },
-            {
-                name:"Motorola G5",
-                price:15000,
-                quantity:0
-            },
-            {
-                name:"Xiaomi Redmi",
-                price:20000,
-                quantity:0
-            },
-            {
-                name:"Nokia 1100",
-                price:1000,
-                quantity:0
-            }
-         ];
-         cartIcon=$("#number");
-         cartNumber=cartIcon.html();
-         cartNumber=parseInt(cartNumber);
-         pushToLocal();
-         getFromLocal();
+                {
+                    name:"Iphone X",
+                    price:70000,
+                    quantity:0
+                },
+                {
+                    name:"Samsung Galaxy S9",
+                    price:32999,
+                    quantity:0
+                },
+                {
+                    name:"Motorola G5",
+                    price:15000,
+                    quantity:0
+                },
+                {
+                    name:"Xiaomi Redmi",
+                    price:20000,
+                    quantity:0
+                },
+                {
+                    name:"Nokia 1100",
+                    price:1000,
+                    quantity:0
+                }
+            ];
+            cartIcon=$("#number");
+            cartNumber=cartIcon.html();
+            cartNumber=parseInt(cartNumber);
+            pushToLocal();
+            getFromLocal();
+        }
     }
     cartIcon=$("#number");
     cartIcon.html(parseInt(cartNumber));
