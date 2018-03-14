@@ -1,68 +1,76 @@
 let mainObj=[];
-let orders=[
-    {
-        name:"OnePlus 5T",
-        price:32999,
-        quantity:0
-    },
-    {
-        name:"Iphone X",
-        price:70000,
-        quantity:0
-    },
-    {
-        name:"Samsung Galaxy S9",
-        price:32999,
-        quantity:0
-    },
-    {
-        name:"Motorola G5",
-        price:15000,
-        quantity:0
-    },
-    {
-        name:"Xiaomi Redmi",
-        price:20000,
-        quantity:0
-    },
-    {
-        name:"Nokia 1100",
-        price:1000,
-        quantity:0
-    }
-];
-let cartIcon=$("#number");
-let cartNumber=cartIcon.html();
-cartNumber=parseInt(cartNumber);
+let orders=[];
+let cartIcon;
+let cartNumber;
 window.onload=function () {
 
     // Check if any data left on local storage
+    refreshOrders(true);
 
-    let addBtn=$(".plus");
-    let minusBtn=$(".minus");
-    addBtn.click(function () {
-        let spanElement=$($(this).prev());
-        let spanNum=spanElement.html();
-        let name=$($(this)).prev().prev().prev().prev();
-        let price=$($(this)).prev().prev().prev();
-        addOrder(parseInt(spanNum),name.html(),price.html());
-    })
-    minusBtn.click(function () {
-        let spanElement=$($(this).next());
-        let spanNum=spanElement.html();
-        let name=$($(this)).prev().prev();
-        let price=$($(this)).prev();
-        removeOrder(parseInt(spanNum),name.html(),price.html());
-    })
+    // let addBtn=$(".plus");
+    // let minusBtn=$(".minus");
+    // addBtn.click(function () {
+    //     let spanElement=$($(this).prev());
+    //     let spanNum=spanElement.html();
+    //     let name=$($(this)).prev().prev().prev().prev();
+    //     let price=$($(this)).prev().prev().prev();
+    //     addOrder(parseInt(spanNum),name.html(),price.html());
+    // })
+    // minusBtn.click(function () {
+    //     let spanElement=$($(this).next());
+    //     let spanNum=spanElement.html();
+    //     let name=$($(this)).prev().prev();
+    //     let price=$($(this)).prev();
+    //     removeOrder(parseInt(spanNum),name.html(),price.html());
+    // })
 };
-function refreshOrders() {
+function refreshOrders(firstTime=false) {
 
     // Update orders array from local storage
-    getFromLocal();
-
-    // Update total cart value
-    cartIcon.html(cartNumber);
-
+    if(!firstTime)
+    {
+        getFromLocal();
+    }
+    else
+    {
+        orders=[{
+            name:"OnePlus 5T",
+            price:32999,
+            quantity:0
+        },
+            {
+                name:"Iphone X",
+                price:70000,
+                quantity:0
+            },
+            {
+                name:"Samsung Galaxy S9",
+                price:32999,
+                quantity:0
+            },
+            {
+                name:"Motorola G5",
+                price:15000,
+                quantity:0
+            },
+            {
+                name:"Xiaomi Redmi",
+                price:20000,
+                quantity:0
+            },
+            {
+                name:"Nokia 1100",
+                price:1000,
+                quantity:0
+            }
+         ];
+         cartIcon=$("#number");
+         cartNumber=cartIcon.html();
+         cartNumber=parseInt(cartNumber);
+         pushToLocal();
+         getFromLocal();
+    }
+     console.log(mainObj);
     // Get div row one and div row two
     let divRowOne=$("#firstRow");
     let divRowTwo=$("#secondRow");
@@ -88,6 +96,7 @@ function refreshOrders() {
 }
 function addOrder(num,name,price) {
 
+    console.log("Hello");
     for(i in orders)
     {
         if(orders[i].name===name)
@@ -127,7 +136,6 @@ function getFromLocal() {
         orders=savedOrders[0];
         cartNumber=savedOrders[1];
     }
-    console.log(savedOrders);
 }
 function createOrder(i) {
 
@@ -151,6 +159,7 @@ function createOrder(i) {
         let name=$($(this)).prev().prev().prev().prev();
         let price=$($(this)).prev().prev().prev();
         addOrder(parseInt(spanNum),name.html(),price.html());
+        console.log("Hi");
     });
 
     cardBody.append(heading);
