@@ -70,7 +70,9 @@ function refreshOrders(firstTime=false) {
          pushToLocal();
          getFromLocal();
     }
-     console.log(mainObj);
+    cartIcon=$("#number");
+    cartIcon.html(parseInt(cartNumber));
+
     // Get div row one and div row two
     let divRowOne=$("#firstRow");
     let divRowTwo=$("#secondRow");
@@ -96,7 +98,6 @@ function refreshOrders(firstTime=false) {
 }
 function addOrder(num,name,price) {
 
-    console.log("Hello");
     for(i in orders)
     {
         if(orders[i].name===name)
@@ -126,10 +127,10 @@ function removeOrder(num,name,price) {
 }
 function pushToLocal() {
     mainObj=[orders,cartNumber];
-    localStorage.setItem("orders",JSON.stringify(mainObj));
+    localStorage.setItem("mainObj",JSON.stringify(mainObj));
 }
 function getFromLocal() {
-    let savedOrders=localStorage.getItem("orders");
+    let savedOrders=localStorage.getItem("mainObj");
     if(savedOrders)
     {
         savedOrders=JSON.parse(savedOrders);
@@ -159,7 +160,6 @@ function createOrder(i) {
         let name=$($(this)).prev().prev().prev().prev();
         let price=$($(this)).prev().prev().prev();
         addOrder(parseInt(spanNum),name.html(),price.html());
-        console.log("Hi");
     });
 
     cardBody.append(heading);
