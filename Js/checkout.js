@@ -6,6 +6,7 @@ window.onload=function () {
     reRender(true);
 };
 function increaseOne(name,quantity,price) {
+
     for(i in ordersCheck)
     {
         if(ordersCheck[i].name==name)
@@ -99,6 +100,7 @@ function  reRender(firstTime=false) {
     cartIconCheck.html(cartNumCheck);
 
     let mainContain=$("#main");
+    mainContain.empty();
     let totalPrice=0;
     for(i in ordersCheck)
     {
@@ -121,7 +123,7 @@ function  reRender(firstTime=false) {
     mainContain.append(totalRow);
 }
 function pushToLocalCheck() {
-    mainObjCheck=[ordersCheck,cartIconCheck];
+    mainObjCheck=[ordersCheck,cartNumCheck];
     localStorage.setItem("mainObj",JSON.stringify(mainObjCheck));
 }
 function getFromLocalCheck() {
@@ -146,13 +148,16 @@ function createCols(i) {
     let h5=$("<h5 class='text-center name'>"+ordersCheck[i].name+"<br>"+"₹"+ordersCheck[i].price+"</h5>");
 
     let minus=$("<i class='fa fa-minus-square bg-dark minus'></i>").click(function () {
+        decreaseOne(ordersCheck[i].name,ordersCheck[i].quantity,ordersCheck[i].price);
     });
     let span=$("<span class='spanNum'>"+ordersCheck[i].quantity+"</span>");
     let plus=$("<i class='fa fa-plus-square bg-dark plus'></i>").click(function () {
-
+          increaseOne(ordersCheck[i].name,ordersCheck[i].quantity,ordersCheck[i].price);
     });
 
-    let cross=$("<i class='fa fa-times cross'></i>");
+    let cross=$("<i class='fa fa-times cross'></i>").click(function () {
+        remove(ordersCheck[i].name,ordersCheck[i].quantity,ordersCheck[i].price);
+    });
 
     divCol1.append(img);
     divCol2.append(h5);
