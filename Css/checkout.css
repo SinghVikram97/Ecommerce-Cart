@@ -1,0 +1,56 @@
+.navbar-brand{
+    margin-left: 14%;
+}
+.form-control{
+    width: 400px !important;
+}
+.dropdown-toggle{
+    color:white !important;
+}
+.drop{
+    margin-left: 10%;
+}
+#circle{
+    color: white;
+}
+#number{
+    color: #007bff;
+}
+#cart{
+    font-size: 40px;
+}
+#over{
+    left:-26px;
+    top:-10px;
+}
+.navbar{
+    margin-bottom: 120px;
+}
+.plus{
+    position: relative;
+    top:112px;
+}
+.minus{
+    position: relative;
+    top:112px;
+}
+.logo{
+    margin-left: 19.2%;
+}
+.name{
+    position: relative;
+    top:105px;
+}
+.spanNum{
+    position: relative;
+    top:112px;
+}
+.cross{
+    position: relative;
+    top:112px;
+    font-size: 20px;
+}
+hr{
+    margin-left: 2%;
+    width: 1000px;
+}

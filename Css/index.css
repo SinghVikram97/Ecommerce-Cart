@@ -20,8 +20,8 @@
     font-size: 40px;
 }
 #over{
-    left:-26px;
-    top:-10px;
+    left:-30px;
+    top:-22px;
 }
 .navbar{
     margin-bottom: 70px;
@@ -31,4 +31,11 @@
 }
 .minus{
     color: white;
+}
+.logo{
+    margin-left: 19.2%;
+}
+.link{
+    text-decoration: none;
+    color:black;
 }
